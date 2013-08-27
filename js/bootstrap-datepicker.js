@@ -780,6 +780,9 @@
 						}
 						break;
 					case 'span':
+                                                                                        if(target.is('.addeddatepickermesagesmonth') || target.is('.addeddatepickermesagesyear')){
+                                                break;
+                                            } else{
 						if (!target.is('.disabled')) {
 							this.viewDate.setUTCDate(1);
 							if (target.is('.month')) {
@@ -805,6 +808,7 @@
 							this.fill();
 						}
 						break;
+                                }
 					case 'td':
 						if (target.is('.day') && !target.is('.disabled')){
 							var day = parseInt(target.text(), 10)||1;
