@@ -221,7 +221,7 @@
 			if (this.isInput) { // single input
 				this._events = [
 					[this.element, {
-						focus: $.proxy(this.show, this),
+//						focus: $.proxy(this.show, this),
 						keyup: $.proxy(this.update, this),
 						keydown: $.proxy(this.keydown, this)
 					}]
@@ -780,6 +780,9 @@
 						}
 						break;
 					case 'span':
+                                                                                        if(target.is('.addeddatepickermesagesmonth') || target.is('.addeddatepickermesagesyear')){
+                                                break;
+                                            } else{
 						if (!target.is('.disabled')) {
 							this.viewDate.setUTCDate(1);
 							if (target.is('.month')) {
@@ -805,6 +808,7 @@
 							this.fill();
 						}
 						break;
+                                }
 					case 'td':
 						if (target.is('.day') && !target.is('.disabled')){
 							var day = parseInt(target.text(), 10)||1;
@@ -904,14 +908,15 @@
 
 		keydown: function(e){
 			if (this.picker.is(':not(:visible)')){
-				if (e.keyCode == 27) // allow escape to hide and re-show picker
+				if (e.keyCode == 27) {// allow escape to hide and re-show picker
 					this.show();
-				        return;
                                 }else{
                                 if (e.shiftKey && e.keyCode == 191){ // also add ?
                                     e.preventDefault(); // prevent the ? being added to the field
                                     this.show();
                                 }
+                                }
+				return;
 			}
 			var dateChanged = false,
 				dir, day, month,
@@ -982,7 +987,7 @@
 				case 9: // tab
 					this.hide();
 					break;
-                                        default:e.preventDefault(); 
+                                         default:e.preventDefault(); 
                                         break; 
 			}
 			if (dateChanged){
@@ -1347,17 +1352,16 @@
 	};
 	DPGlobal.template = '<div class="datepicker">'+
 							'<div class="datepicker-days">'+
+                                                        '<span class="addeddatepickermesagesmonth">Click the month below for year view</span>'+
 								'<table class=" table-condensed">'+
-                                                                '<span class="addeddatepickermesagesmonth">Click the month below for year view</span>'+
 									DPGlobal.headTemplate+
 									'<tbody></tbody>'+
 									DPGlobal.footTemplate+
 								'</table>'+
 							'</div>'+
 							'<div class="datepicker-months">'+
+                                                        '<span class="addeddatepickermesagesyear">Click the year below for decade view</span>'+
 								'<table class="table-condensed">'+
-                                                                 '<span class="addeddatepickermesagesyear">Click the year below for decade view</span>'+
-								
 									DPGlobal.headTemplate+
 									DPGlobal.contTemplate+
 									DPGlobal.footTemplate+
