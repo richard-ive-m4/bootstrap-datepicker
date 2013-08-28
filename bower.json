@@ -1,6 +1,6 @@
 {
   "name": "bootstrap-datepicker",
-  "version": "1.0.3-m4",
+  "version": "1.0.4-m4",
   "main": ["js/bootstrap-datepicker.js","less/datepicker.less"],
   "dependencies": {
     "jquery" : ">=1.7.1",
